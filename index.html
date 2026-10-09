@@ -3,385 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المتفوق | أولى إعدادي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>منصة اللغات التعليمية الذكية - جميع الصفوف</title>
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg: #f8fafc;
+            --primary: #1b4f72;
+            --secondary: #2e86c1;
+            --accent: #28b463;
+            --ai-color: #8e44ad;
+            --bg-color: #f4f7f6;
             --card-bg: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --accent: #10b981;
         }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); margin: 0; padding: 20px; color: #333; }
+        header { background: var(--primary); color: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 10px 0; font-size: 2em; }
+        header p { margin: 0; font-size: 1.1em; opacity: 0.9; }
+        
+        .study-tip { background: #d4efdf; border: 1px solid #a9dfbf; padding: 15px; border-radius: 8px; margin: 25px 0; text-align: center; font-weight: bold; color: #145a32; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            padding-bottom: 40px;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), #3b82f6);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-        }
-
-        header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 850px) {
-            .container {
-                grid-template-columns: 1fr 1fr;
-            }
-            .full-width {
-                grid-column: span 2;
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid #e2e8f0;
-        }
-
-        .card h2 {
-            font-size: 1.4rem;
-            margin-bottom: 16px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* قائمة المواد */
-        .subject-list {
-            list-style: none;
-        }
-
-        .subject-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: #f1f5f9;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            transition: all 0.2s;
-        }
-
-        .subject-item:hover {
-            background: #e2e8f0;
-        }
-
-        .subject-item label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .subject-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent);
-            cursor: pointer;
-        }
-
-        /* مؤشر التقدم */
-        .progress-bar-container {
-            background: #e2e8f0;
-            border-radius: 10px;
-            height: 12px;
-            overflow: hidden;
-            margin-top: 15px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--accent);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        /* المساعد الذكي */
-        .chat-box {
-            height: 280px;
-            overflow-y: auto;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 12px;
-            background: #fafafa;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .message.bot {
-            background: #e0e7ff;
-            color: #3730a3;
-            align-self: flex-start;
-            border-bottom-right-radius: 2px;
-        }
-
-        .message.user {
-            background: var(--primary);
-            color: white;
-            align-self: flex-end;
-            border-bottom-left-radius: 2px;
-        }
-
-        .chat-input-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .chat-input-group input {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            outline: none;
-            font-size: 0.95rem;
-        }
-
-        .chat-input-group button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        .chat-input-group button:hover {
-            background: var(--primary-hover);
-        }
-
-        /* مؤقت البومودورو */
-        .timer-display {
-            font-size: 3rem;
-            font-weight: 800;
-            text-align: center;
-            margin: 15px 0;
-            color: var(--primary);
-        }
-
-        .timer-controls {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .btn-start { background: var(--accent); color: white; }
-        .btn-reset { background: #ef4444; color: white; }
+        .stage-container { margin-top: 35px; }
+        .stage-title { background: var(--secondary); color: white; padding: 12px 20px; border-radius: 6px; font-size: 1.4em; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        .grades-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        
+        .card { background: var(--card-bg); border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        
+        .card h3 { color: var(--primary); margin-top: 0; border-bottom: 2px solid var(--secondary); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .card h3 span { font-size: 0.7em; background: #eaf2f8; color: var(--secondary); padding: 3px 8px; border-radius: 4px; }
+        
+        .subjects-list { list-style-type: none; padding: 0; text-align: left; direction: ltr; font-size: 0.9em; color: #444; background: #f9f9f9; padding: 10px; border-radius: 6px; margin: 10px 0; }
+        .subjects-list li { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        .arabic-sub { direction: rtl; text-align: right; }
+        
+        .ai-box { background: #f4ecf7; border: 1px solid #d2b4de; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.85em; color: #512e5f; }
+        .ai-title { color: var(--ai-color); font-weight: bold; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+        
+        .btn-group { display: flex; gap: 8px; margin-top: 15px; }
+        .btn { flex: 1; display: block; background: var(--accent); color: white; padding: 9px; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.9em; font-weight: bold; transition: background 0.2s; }
+        .btn-ai { background: var(--ai-color); }
+        .btn:hover { opacity: 0.85; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>📚 رفيق المذاكرة | أولى إعدادي</h1>
-        <p>منصتك الذكية لمتابعة الدروس وشرح المواد بالذكاء الاصطناعي</p>
+        <h1>منصة اللغات التعليمية الذكية (Languages & AI Hub)</h1>
+        <p>دليلك المتكامل لمناهج مدارس اللغات والتجريبي من الأولى ابتدائي حتى الثانية ثانوي مع مساعد ذكي لكل صف</p>
     </header>
 
-    <div class="container">
-
-        <!-- قسم متابعة المواد -->
-        <div class="card">
-            <h2>📖 مواد الصف الأول الإعدادي</h2>
-            <ul class="subject-list">
-                <li class="subject-item">
-                    <label><input type="checkbox" class="subject-check" onchange="updateProgress()"> اللغة العربية</label>
-                </li>
-                <li class="subject-item">
-                    <label><input type="checkbox" class="subject-check" onchange="updateProgress()"> اللغة الإنجليزية</label>
-                </li>
-                <li class="subject-item">
-                    <label><input type="checkbox" class="subject-check" onchange="updateProgress()"> الرياضيات (جبر وهندسة)</label>
-                </li>
-                <li class="subject-item">
-                    <label><input type="checkbox" class="subject-check" onchange="updateProgress()"> العلوم</label>
-                </li>
-                <li class="subject-item">
-                    <label><input type="checkbox" class="subject-check" onchange="updateProgress()"> الدراسات الاجتماعية</label>
-                </li>
-            </ul>
-            <div style="margin-top: 15px;">
-                <span style="font-size: 0.9rem; color: var(--text-muted);">نسبة الإنجاز اليومي:</span>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- قسم مؤقت المذاكرة (Pomodoro) -->
-        <div class="card">
-            <h2>⏱️ مؤقت المذاكرة (25 دقيقة)</h2>
-            <p style="font-size: 0.9rem; color: var(--text-muted);">ذاكر بتركيز لمدة 25 دقيقة ثم خذ استراحة لمدة 5 دقائق.</p>
-            <div class="timer-display" id="timer">25:00</div>
-            <div class="timer-controls">
-                <button class="btn btn-start" onclick="startTimer()">بدء</button>
-                <button class="btn btn-reset" onclick="resetTimer()">إعادة ضبط</button>
-            </div>
-        </div>
-
-        <!-- قسم المساعد الذكي -->
-        <div class="card full-width">
-            <h2>🤖 المساعد الذكي للمذاكرة</h2>
-            <div class="chat-box" id="chatBox">
-                <div class="message bot">أهلاً بك يا بطل! أنا معلمك الذكي لصف أولى إعدادي. اسألني في أي مادة أو قانون أو درس وسأشرحه لك بأسلوب بسيط جداً!</div>
-            </div>
-            <div class="chat-input-group">
-                <input type="text" id="userInput" placeholder="اكتب سؤالك هنا (مثال: اشرح لي التركيب الذري، أو القوة الصحيحة غير السالبة)..." onkeypress="handleKeyPress(event)">
-                <button onclick="sendMessage()">إرسال</button>
-            </div>
-        </div>
-
+    <div class="study-tip">
+        ⏱️ نظام المذاكرة المعتمد في المنصة: <strong>45 دقيقة تركيز تام</strong> يتبعها <strong>15 دقيقة راحة واسترخاء</strong> لضمان أعلى استيعاب!
     </div>
 
-    <script>
-        // تحديث شريط التقدم
-        function updateProgress() {
-            const checkboxes = document.querySelectorAll('.subject-check');
-            const total = checkboxes.length;
-            let checkedCount = 0;
-            checkboxes.forEach(cb => { if(cb.checked) checkedCount++; });
-            const percentage = (checkedCount / total) * 100;
-            document.getElementById('progressBar').style.width = percentage + '%';
-        }
-
-        // مؤقت البومودورو
-        let timeLeft = 25 * 60;
-        let timerId = null;
-
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            document.getElementById('timer').textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        function startTimer() {
-            if (timerId !== null) return;
-            timerId = setInterval(() => {
-                if (timeLeft > 0) {
-                    timeLeft--;
-                    updateTimerDisplay();
-                } else {
-                    clearInterval(timerId);
-                    timerId = null;
-                    alert("عاش يا بطل! انتهت 25 دقيقة مذاكرة، خذ استراحة 5 دقائق الآن.");
-                }
-            }, 1000);
-        }
-
-        function resetTimer() {
-            clearInterval(timerId);
-            timerId = null;
-            timeLeft = 25 * 60;
-            updateTimerDisplay();
-        }
-
-        // إجابات المساعد الذكي للمنهج
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            addMessage(text, 'user');
-            input.value = '';
-
-            setTimeout(() => {
-                const response = getAIResponse(text);
-                addMessage(response, 'bot');
-            }, 600);
-        }
-
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') sendMessage();
-        }
-
-        function addMessage(text, sender) {
-            const chatBox = document.getElementById('chatBox');
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', sender);
-            msgDiv.textContent = text;
-            chatBox.appendChild(msgDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        function getAIResponse(query) {
-            const q = query.toLowerCase();
+    <!-- ================= المرحلة الابتدائية ================= -->
+    <div class="stage-container">
+        <div class="stage-title">🎒 Primary Stage (المرحلة الابتدائية)</div>
+        <div class="grades-grid">
             
-            if (q.includes('ذرة') || q.includes('الذرة') || q.includes('تركيب')) {
-                return "الذرة هي أصغر وحدة بنائية للمادة تشترك في التفاعلات الكيميائية. تتكون من: 1. نواة (في المركز بها بروتونات موجبة ونيوترونات متعادلة) 2. إلكترونات سالبة تدور حول النواة.";
-            } else if (q.includes('جبر') || q.includes('ضرب') || q.includes('أس')) {
-                return "في الجبر للصف الأول الإعدادي: عند ضرب الحدود المتشابهة نجمع الأسس (مثال: س² × س³ = س⁵)، وعند القسمة نطرح الأسس!";
-            } else if (q.includes('دراسات') || q.includes('مجموعات') || q.includes('كواكب')) {
-                return "كواكب المجموعة الشمسية 8 كواكب تقسم إلى: كواكب داخلية (عطارد، الزهرة، الأرض، المريخ) وهي صلبة، وكواكب خارجية (المشتري، زحل، أورانوس، نبتون) وهي غازية.";
-            } else if (q.includes('علوم') || q.includes('طاقة')) {
-                return "الطاقة هي القدرة على بذل شغل أو إحداث تغيير. وصورها متعددة مثل: الطاقة الميكانيكية، الحرارية، الكهربية، والكيميائية. وقانون بقاء الطاقة ينص على أن الطاقة لا تفنى ولا تستحدث من العدم.";
-            } else if (q.includes('شكرا') || q.includes('شكر')) {
-                return "العفو يا بطل! بالتوفيق دائماً، إذا كان لديك أي سؤال آخر أنا جاهز!";
-            } else {
-                return "سؤال ممتاز! للمذاكرة الجيدة لهذا الدرس، أنصحك بقراءة المفهوم الرئيسي أولاً ثم حل 3 أسئلة مباشرة عليه لتثبيت المعلومة في ذهنك.";
-            }
-        }
-    </script>
+            <!-- الصف الأول الابتدائي -->
+            <div class="card">
+                <div>
+                    <h3>Grade 1 <span>الابتدائية</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
+                        <li>English Language</li>
+                        <li>Math</li>
+                        <li>Discover</li>
+                        <li>Religion <span class="arabic-sub">(دين)</span></li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 Grade 1 AI Assistant:</div>
+                        مساعد تفاعلي لشرح الحروف، تأسيس الكلمات، وأساسيات الـ Math بطرق ممتعة وبسيطة.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#g1-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#g1-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الصف الثاني الابتدائي -->
+            <div class="card">
+                <div>
+                    <h3>Grade 2 <span>الابتدائية</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
+                        <li>English Language</li>
+                        <li>Math</li>
+                        <li>Discover</li>
+                        <li>Religion <span class="arabic-sub">(دين)</span></li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 Grade 2 AI Assistant:</div>
+                        يساعدك في حل تمارين الجمع والطرح، وجمل القراءة وقواعد الـ English المبسطة.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#g2-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#g2-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الصف الثالث الابتدائي -->
+            <div class="card">
+                <div>
+                    <h3>Grade 3 <span>الابتدائية</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
+                        <li>English Language</li>
+                        <li>Math</li>
+                        <li>Discover</li>
+                        <li>Religion <span class="arabic-sub">(دين)</span></li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 Grade 3 AI Assistant:</div>
+                        خبير في تبسيط جداول الضرب، مفاهيم مادة الـ Discover، والقصص القصيرة.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#g3-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#g3-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الصف الرابع الابتدائي -->
+            <div class="card">
+                <div>
+                    <h3>Grade 4 <span>الابتدائية</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic, English, Math, Science</li>
+                        <li>Social Studies, ICT, Skills, Religion</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 Grade 4 AI Assistant:</div>
+                        متخصص في تبسيط مصطلحات الـ Science والـ Math المعقدة بطريقة تفاعلية سلسة.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#g4-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#g4-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الصف الخامس الابتدائي -->
+            <div class="card">
+                <div>
+                    <h3>Grade 5 <span>الابتدائية</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic, English, Math, Science</li>
+                        <li>Social Studies, ICT, Skills, Religion</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 Grade 5 AI Assistant:</div>
+                        مساعد خبير لحل مسائل الكسور، وحدات القياس، ومراجعة تجارب الـ Science.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#g5-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#g5-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الصف السادس الابتدائي -->
+            <div class="card">
+                <div>
+                    <h3>Grade 6 <span>الابتدائية</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic, English, Math, Science</li>
+                        <li>Social Studies, ICT, Skills, Religion</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 Grade 6 AI Assistant:</div>
+                        يساعدك في مراجعة منهج الـ Science المتقدم وقواعد الـ Grammar باللغة الإنجليزية.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#g6-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#g6-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= المرحلة الإعدادية ================= -->
+    <div class="stage-container">
+        <div class="stage-title">🏫 Preparatory Stage (المرحلة الإعدادية - لغات)</div>
+        <div class="grades-grid">
+            
+            <!-- الأول الإعدادي -->
+            <div class="card">
+                <div>
+                    <h3>1st Preparatory <span>الأول الإعدادي</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
+                        <li>English Language</li>
+                        <li><strong>Second Foreign Language (German / French)</strong></li>
+                        <li>Math (Algebra & Geometry)</li>
+                        <li>Science (Physics, Chem, Bio)</li>
+                        <li>Social Studies, Computer, Religion</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 1st Prep AI Assistant:</div>
+                        خبير في قوانين الجبر والهندسة، القواعد الألمانية/الفرنسية، وأسئلة الـ Science.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#prep1-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#prep1-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الثاني الإعدادي -->
+            <div class="card">
+                <div>
+                    <h3>2nd Preparatory <span>الثاني الإعدادي</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
+                        <li>English Language</li>
+                        <li><strong>Second Foreign Language (German / French)</strong></li>
+                        <li>Math (Algebra & Geometry)</li>
+                        <li>Science (Physics, Chem, Bio)</li>
+                        <li>Social Studies, Computer, Religion</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 2nd Prep AI Assistant:</div>
+                        يساعدك في حل مسائل التحليل، نظريات الهندسة، وتجارب الفيزياء باللغة الإنجليزية.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#prep2-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#prep2-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الثالث الإعدادي -->
+            <div class="card">
+                <div>
+                    <h3>3rd Preparatory <span>الثالث الإعدادي</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
+                        <li>English Language</li>
+                        <li><strong>Second Foreign Language (German / French)</strong></li>
+                        <li>Math, Science, Social Studies</li>
+                        <li>Computer, Religion</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 3rd Prep AI Assistant:</div>
+                        مساعد خاص للشهادة الإعدادية لحل محافظات السنين السابقة وأسئلة الفهم العالي.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#prep3-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#prep3-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= المرحلة الثانوية ================= -->
+    <div class="stage-container">
+        <div class="stage-title">🎓 Secondary Stage (المرحلة الثانوية)</div>
+        <div class="grades-grid">
+            
+            <!-- الأول الثانوي -->
+            <div class="card">
+                <div>
+                    <h3>1st Secondary <span>الأول الثانوي</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic & English Languages</li>
+                        <li><strong>Second Foreign Language (German / French / Italian / Spanish)</strong></li>
+                        <li>Math (Algebra, Trigonometry, Analytic Geo)</li>
+                        <li>Integrated Science / Sciences</li>
+                        <li>History, Geography, Philosophy & Logic</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 1st Sec AI Assistant:</div>
+                        مساعد ذكي مدرب على نظام التابلت الحديث وأسئلة الفهم والتحليل في جميع المواد.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#sec1-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#sec1-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+            <!-- الثاني الثانوي -->
+            <div class="card">
+                <div>
+                    <h3>2nd Secondary <span>الثاني الثانوي</span></h3>
+                    <ul class="subjects-list">
+                        <li>Arabic, English, <strong>2nd Lang (German / French...)</strong></li>
+                        <li><strong>Sci Section:</strong> Pure Math, Mechanics, Physics, Chemistry, Biology</li>
+                        <li><strong>Arts Section:</strong> History, Geography, Psychology, Philosophy</li>
+                    </ul>
+                    <div class="ai-box">
+                        <div class="ai-title">🤖 2nd Sec AI Assistant:</div>
+                        خبير تفاضل وتكامل، ميكانيكا (Statics & Dynamics)، وقوانين الفيزياء المتقدمة.
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <a href="#sec2-subjects" class="btn">المناهج والملخصات</a>
+                    <a href="#sec2-ai" class="btn btn-ai">اسأل الـ AI</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
