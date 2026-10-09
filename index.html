@@ -3,314 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة اللغات التعليمية الذكية - جميع الصفوف</title>
+    <title>منصة اللغات والبرمجة الذكية - الأحمر والأصفر</title>
     <style>
         :root {
-            --primary: #1b4f72;
-            --secondary: #2e86c1;
-            --accent: #28b463;
-            --ai-color: #8e44ad;
-            --bg-color: #f4f7f6;
-            --card-bg: #ffffff;
+            --bg-dark: #121212;
+            --card-bg: #1e1e1e;
+            --red-primary: #e74c3c;
+            --yellow-accent: #f1c40f;
+            --text-light: #f5f5f5;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); margin: 0; padding: 20px; color: #333; }
-        header { background: var(--primary); color: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        header h1 { margin: 0 0 10px 0; font-size: 2em; }
-        header p { margin: 0; font-size: 1.1em; opacity: 0.9; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-dark); color: var(--text-light); margin: 0; padding: 20px; }
         
-        .study-tip { background: #d4efdf; border: 1px solid #a9dfbf; padding: 15px; border-radius: 8px; margin: 25px 0; text-align: center; font-weight: bold; color: #145a32; }
+        header { background: linear-gradient(135deg, #c0392b, #d4ac0d); color: #fff; padding: 25px; border-radius: 12px; text-align: center; box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4); }
+        header h1 { margin: 0; font-size: 2.2em; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        header p { margin: 8px 0 0 0; font-size: 1.1em; font-weight: bold; }
 
-        .stage-container { margin-top: 35px; }
-        .stage-title { background: var(--secondary); color: white; padding: 12px 20px; border-radius: 6px; font-size: 1.4em; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        /* صندوق تسجيل الدخول بالاسم والصّف للحصول على الباسورد */
+        .login-box { background: var(--card-bg); border: 2px solid var(--yellow-accent); padding: 20px; border-radius: 10px; margin: 25px auto; max-width: 500px; text-align: center; box-shadow: 0 4px 10px rgba(241, 196, 15, 0.2); }
+        .login-box h3 { color: var(--yellow-accent); margin-top: 0; }
+        .login-box input, .login-box select { width: 80%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #444; background: #2c2c2c; color: white; font-size: 1em; }
+        .login-box button { background: var(--red-primary); color: white; border: none; padding: 10px 20px; font-size: 1em; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .login-box button:hover { background: var(--yellow-accent); color: #000; }
+        #pass-result { margin-top: 12px; font-weight: bold; color: var(--yellow-accent); font-size: 1.1em; }
+
+        .study-tip { background: rgba(241, 196, 15, 0.1); border: 1px solid var(--yellow-accent); padding: 12px; border-radius: 8px; margin: 20px 0; text-align: center; font-weight: bold; color: var(--yellow-accent); }
+
+        .section-title { background: var(--red-primary); color: white; padding: 10px 20px; border-radius: 6px; font-size: 1.4em; margin: 30px 0 15px 0; border-right: 6px solid var(--yellow-accent); }
         
-        .grades-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .grades-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
         
-        .card { background: var(--card-bg); border: 1px solid #ddd; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        .card { background: var(--card-bg); border: 1px solid #333; border-top: 4px solid var(--yellow-accent); border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: space-between; }
+        .card h3 { color: var(--yellow-accent); margin-top: 0; border-bottom: 1px solid #444; padding-bottom: 8px; display: flex; align-items: center; gap: 10px; font-size: 1.3em; }
+        .card h3 i { font-style: normal; font-size: 1.2em; }
         
-        .card h3 { color: var(--primary); margin-top: 0; border-bottom: 2px solid var(--secondary); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .card h3 span { font-size: 0.7em; background: #eaf2f8; color: var(--secondary); padding: 3px 8px; border-radius: 4px; }
+        .subjects-list { list-style-type: none; padding: 0; text-align: left; direction: ltr; font-size: 0.9em; color: #ccc; background: #252525; padding: 10px; border-radius: 6px; margin: 10px 0; }
+        .subjects-list li { margin-bottom: 5px; border-bottom: 1px solid #333; padding-bottom: 3px; }
+        .arabic-sub { direction: rtl; text-align: right; color: #f1c40f; }
         
-        .subjects-list { list-style-type: none; padding: 0; text-align: left; direction: ltr; font-size: 0.9em; color: #444; background: #f9f9f9; padding: 10px; border-radius: 6px; margin: 10px 0; }
-        .subjects-list li { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
-        .arabic-sub { direction: rtl; text-align: right; }
+        .ai-box { background: #2c1a1a; border: 1px solid var(--red-primary); padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.85em; color: #f5b7b1; }
+        .ai-title { color: var(--red-primary); font-weight: bold; margin-bottom: 4px; }
         
-        .ai-box { background: #f4ecf7; border: 1px solid #d2b4de; padding: 10px; border-radius: 6px; margin-top: 10px; font-size: 0.85em; color: #512e5f; }
-        .ai-title { color: var(--ai-color); font-weight: bold; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+        .video-box { background: #1a2634; border: 1px solid #2980b9; padding: 8px; border-radius: 6px; margin-top: 8px; font-size: 0.85em; color: #a9cce3; text-align: center; }
         
         .btn-group { display: flex; gap: 8px; margin-top: 15px; }
-        .btn { flex: 1; display: block; background: var(--accent); color: white; padding: 9px; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.9em; font-weight: bold; transition: background 0.2s; }
-        .btn-ai { background: var(--ai-color); }
-        .btn:hover { opacity: 0.85; }
+        .btn { flex: 1; display: block; background: var(--yellow-accent); color: #000; padding: 8px; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.85em; font-weight: bold; transition: 0.2s; }
+        .btn-ai { background: var(--red-primary); color: white; }
+        .btn:hover { opacity: 0.8; }
+
+        /* قسم برمجة المواقع الخاص بالزيرو وكودزيلا */
+        .programming-section { background: #1a1a1a; border: 2px dashed var(--yellow-accent); padding: 25px; border-radius: 12px; margin-top: 40px; }
+        .programming-section h2 { color: var(--yellow-accent); margin-top: 0; text-align: center; }
+        .prog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
+        .prog-card { background: #252525; padding: 15px; border-radius: 8px; border-left: 4px solid var(--red-primary); }
+        .prog-card h4 { color: var(--yellow-accent); margin: 0 0 8px 0; }
+        .prog-card p { font-size: 0.85em; color: #bbb; margin: 0 0 10px 0; }
+        .prog-link { display: inline-block; background: var(--red-primary); color: white; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85em; font-weight: bold; }
+        .prog-link:hover { background: var(--yellow-accent); color: #000; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>منصة اللغات التعليمية الذكية (Languages & AI Hub)</h1>
-        <p>دليلك المتكامل لمناهج مدارس اللغات والتجريبي من الأولى ابتدائي حتى الثانية ثانوي مع مساعد ذكي لكل صف</p>
+        <h1>🔥 منصة اللغات والبرمجة الذكية 🟡</h1>
+        <p>نظام تعليمي متكامل لمدارس اللغات (من أولى ابتدائي حتى ثانية ثانوي) + كورسات البرمجة العالمية</p>
     </header>
 
+    <!-- نظام كتابة الاسم والصّف للحصول على الباسورد -->
+    <div class="login-box">
+        <h3>🔐 بوابة توليد كلمة المرور (Password) للصف الدراسي</h3>
+        <p style="font-size: 0.9em; color: #bbb; margin-bottom: 10px;">اكتب اسمك واختار صفك عشان تحصل على الباسورد الخاص بصفك فوراً:</p>
+        <input type="text" id="userName" placeholder="اكتب اسمك هنا..." required><br>
+        <select id="userGrade">
+            <option value="">-- اختار صفك الدراسي --</option>
+            <option value="Grade 1">الصف الأول الابتدائي (Grade 1)</option>
+            <option value="Grade 2">الصف الثاني الابتدائي (Grade 2)</option>
+            <option value="Grade 3">الصف الثالث الابتدائي (Grade 3)</option>
+            <option value="Grade 4">الصف الرابع الابتدائي (Grade 4)</option>
+            <option value="Grade 5">الصف الخامس الابتدائي (Grade 5)</option>
+            <option value="Grade 6">الصف السادس الابتدائي (Grade 6)</option>
+            <option value="1st Prep">الأول الإعدادي (1st Prep)</option>
+            <option value="2nd Prep">الثاني الإعدادي (2nd Prep)</option>
+            <option value="3rd Prep">الثالث الإعدادي (3rd Prep)</option>
+            <option value="1st Sec">الأول الثانوي (1st Sec)</option>
+            <option value="2nd Sec">الثاني الثانوي (2nd Sec)</option>
+        </select><br>
+        <button onclick="generatePassword()">إظهار الباسورد الخاص بي</button>
+        <div id="pass-result"></div>
+    </div>
+
     <div class="study-tip">
-        ⏱️ نظام المذاكرة المعتمد في المنصة: <strong>45 دقيقة تركيز تام</strong> يتبعها <strong>15 دقيقة راحة واسترخاء</strong> لضمان أعلى استيعاب!
+        ⏱️ نظام المذاكرة الفعّال المعتمد: <strong>45 دقيقة تركيز تام</strong> يتبعها <strong>15 دقيقة راحة</strong>!
     </div>
 
     <!-- ================= المرحلة الابتدائية ================= -->
-    <div class="stage-container">
-        <div class="stage-title">🎒 Primary Stage (المرحلة الابتدائية)</div>
-        <div class="grades-grid">
-            
-            <!-- الصف الأول الابتدائي -->
-            <div class="card">
-                <div>
-                    <h3>Grade 1 <span>الابتدائية</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
-                        <li>English Language</li>
-                        <li>Math</li>
-                        <li>Discover</li>
-                        <li>Religion <span class="arabic-sub">(دين)</span></li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 Grade 1 AI Assistant:</div>
-                        مساعد تفاعلي لشرح الحروف، تأسيس الكلمات، وأساسيات الـ Math بطرق ممتعة وبسيطة.
-                    </div>
+    <div class="section-title">🎒 Primary Stage (المرحلة الابتدائية)</div>
+    <div class="grades-grid">
+        
+        <!-- الصف الأول -->
+        <div class="card">
+            <div>
+                <h3><i>🌱</i> Grade 1</h3>
+                <ul class="subjects-list">
+                    <li>Arabic <span class="arabic-sub">(عربي)</span></li>
+                    <li>English Language</li>
+                    <li>Math & Discover</li>
+                    <li>Religion</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    مساعد تفاعلي لشرح الحروف والكلمات وأساسيات الـ Math.
                 </div>
-                <div class="btn-group">
-                    <a href="#g1-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#g1-ai" class="btn btn-ai">اسأل الـ AI</a>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: مرجعية الحروف وقواعد الـ Connect
                 </div>
             </div>
-
-            <!-- الصف الثاني الابتدائي -->
-            <div class="card">
-                <div>
-                    <h3>Grade 2 <span>الابتدائية</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
-                        <li>English Language</li>
-                        <li>Math</li>
-                        <li>Discover</li>
-                        <li>Religion <span class="arabic-sub">(دين)</span></li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 Grade 2 AI Assistant:</div>
-                        يساعدك في حل تمارين الجمع والطرح، وجمل القراءة وقواعد الـ English المبسطة.
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#g2-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#g2-ai" class="btn btn-ai">اسأل الـ AI</a>
-                </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
             </div>
-
-            <!-- الصف الثالث الابتدائي -->
-            <div class="card">
-                <div>
-                    <h3>Grade 3 <span>الابتدائية</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
-                        <li>English Language</li>
-                        <li>Math</li>
-                        <li>Discover</li>
-                        <li>Religion <span class="arabic-sub">(دين)</span></li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 Grade 3 AI Assistant:</div>
-                        خبير في تبسيط جداول الضرب، مفاهيم مادة الـ Discover، والقصص القصيرة.
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#g3-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#g3-ai" class="btn btn-ai">اسأل الـ AI</a>
-                </div>
-            </div>
-
-            <!-- الصف الرابع الابتدائي -->
-            <div class="card">
-                <div>
-                    <h3>Grade 4 <span>الابتدائية</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic, English, Math, Science</li>
-                        <li>Social Studies, ICT, Skills, Religion</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 Grade 4 AI Assistant:</div>
-                        متخصص في تبسيط مصطلحات الـ Science والـ Math المعقدة بطريقة تفاعلية سلسة.
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#g4-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#g4-ai" class="btn btn-ai">اسأل الـ AI</a>
-                </div>
-            </div>
-
-            <!-- الصف الخامس الابتدائي -->
-            <div class="card">
-                <div>
-                    <h3>Grade 5 <span>الابتدائية</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic, English, Math, Science</li>
-                        <li>Social Studies, ICT, Skills, Religion</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 Grade 5 AI Assistant:</div>
-                        مساعد خبير لحل مسائل الكسور، وحدات القياس، ومراجعة تجارب الـ Science.
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#g5-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#g5-ai" class="btn btn-ai">اسأل الـ AI</a>
-                </div>
-            </div>
-
-            <!-- الصف السادس الابتدائي -->
-            <div class="card">
-                <div>
-                    <h3>Grade 6 <span>الابتدائية</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic, English, Math, Science</li>
-                        <li>Social Studies, ICT, Skills, Religion</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 Grade 6 AI Assistant:</div>
-                        يساعدك في مراجعة منهج الـ Science المتقدم وقواعد الـ Grammar باللغة الإنجليزية.
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#g6-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#g6-ai" class="btn btn-ai">اسأل الـ AI</a>
-                </div>
-            </div>
-
         </div>
+
+        <!-- الصف الثاني -->
+        <div class="card">
+            <div>
+                <h3><i>✏️</i> Grade 2</h3>
+                <ul class="subjects-list">
+                    <li>Arabic <span class="arabic-sub">(عربي)</span></li>
+                    <li>English Language</li>
+                    <li>Math & Discover</li>
+                    <li>Religion</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    مساعد لحل تمارين الجمع والطرح وقواعد الـ English.
+                </div>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: حل تدريبات كتاب المدرسة Math
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
+        <!-- الصف الثالث -->
+        <div class="card">
+            <div>
+                <h3><i>📚</i> Grade 3</h3>
+                <ul class="subjects-list">
+                    <li>Arabic <span class="arabic-sub">(عربي)</span></li>
+                    <li>English Language</li>
+                    <li>Math & Discover</li>
+                    <li>Religion</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    جاهز لتبسيط جداول الضرب ومفاهيم مادة الـ Discover.
+                </div>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: جدول الضرب بطريقة سحرية
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
+        <!-- الصف الرابع -->
+        <div class="card">
+            <div>
+                <h3><i>📐</i> Grade 4</h3>
+                <ul class="subjects-list">
+                    <li>Arabic, English, Math, Science</li>
+                    <li>Social Studies, ICT, Skills</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    يشرح مصطلحات الـ Science والـ Math المعقدة بطريقة ممتعة.
+                </div>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: مراجعة ليلة الامتحان Science
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
+        <!-- الصف الخامس -->
+        <div class="card">
+            <div>
+                <h3><i>🔬</i> Grade 5</h3>
+                <ul class="subjects-list">
+                    <li>Arabic, English, Math, Science</li>
+                    <li>Social Studies, ICT, Skills</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    مساعد خبير في حل مسائل الكسور ووحدات القياس.
+                </div>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: شرح منهج الـ Math بالكامل
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
+        <!-- الصف السادس -->
+        <div class="card">
+            <div>
+                <h3><i>🔭</i> Grade 6</h3>
+                <ul class="subjects-list">
+                    <li>Arabic, English, Math, Science</li>
+                    <li>Social Studies, ICT, Skills</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    يساعدك في مراجعة منهج الـ Science وتجاربه وأسئلة الـ Grammar.
+                </div>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: خلاصة قواعد النحو والـ English
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
     </div>
 
     <!-- ================= المرحلة الإعدادية ================= -->
-    <div class="stage-container">
-        <div class="stage-title">🏫 Preparatory Stage (المرحلة الإعدادية - لغات)</div>
-        <div class="grades-grid">
-            
-            <!-- الأول الإعدادي -->
-            <div class="card">
-                <div>
-                    <h3>1st Preparatory <span>الأول الإعدادي</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
-                        <li>English Language</li>
-                        <li><strong>Second Foreign Language (German / French)</strong></li>
-                        <li>Math (Algebra & Geometry)</li>
-                        <li>Science (Physics, Chem, Bio)</li>
-                        <li>Social Studies, Computer, Religion</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 1st Prep AI Assistant:</div>
-                        خبير في قوانين الجبر والهندسة، القواعد الألمانية/الفرنسية، وأسئلة الـ Science.
-                    </div>
+    <div class="section-title">🏫 Preparatory Stage (المرحلة الإعدادية - لغات)</div>
+    <div class="grades-grid">
+        
+        <!-- أول إعدادي -->
+        <div class="card">
+            <div>
+                <h3><i>⚡</i> 1st Preparatory</h3>
+                <ul class="subjects-list">
+                    <li>Math (Algebra & Geometry)</li>
+                    <li>Science (Physics, Chem, Bio)</li>
+                    <li>English, Arabic, <strong>2nd Lang (German/French)</strong></li>
+                    <li>Social Studies, Computer</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    خبير في قوانين الجبر والهندسة والتحويلات الكيميائية.
                 </div>
-                <div class="btn-group">
-                    <a href="#prep1-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#prep1-ai" class="btn btn-ai">اسأل الـ AI</a>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: أقوى شرح لفروع الـ Math لغات
                 </div>
             </div>
-
-            <!-- الثاني الإعدادي -->
-            <div class="card">
-                <div>
-                    <h3>2nd Preparatory <span>الثاني الإعدادي</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
-                        <li>English Language</li>
-                        <li><strong>Second Foreign Language (German / French)</strong></li>
-                        <li>Math (Algebra & Geometry)</li>
-                        <li>Science (Physics, Chem, Bio)</li>
-                        <li>Social Studies, Computer, Religion</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 2nd Prep AI Assistant:</div>
-                        يساعدك في حل مسائل التحليل، نظريات الهندسة، وتجارب الفيزياء باللغة الإنجليزية.
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#prep2-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#prep2-ai" class="btn btn-ai">اسأل الـ AI</a>
-                </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
             </div>
-
-            <!-- الثالث الإعدادي -->
-            <div class="card">
-                <div>
-                    <h3>3rd Preparatory <span>الثالث الإعدادي</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic Language <span class="arabic-sub">(عربي)</span></li>
-                        <li>English Language</li>
-                        <li><strong>Second Foreign Language (German / French)</strong></li>
-                        <li>Math, Science, Social Studies</li>
-                        <li>Computer, Religion</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 3rd Prep AI Assistant:</div>
-                        مساعد خاص للشهادة الإعدادية لحل محافظات السنين السابقة وأسئلة الفهم العالي.
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <a href="#prep3-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#prep3-ai" class="btn btn-ai">اسأل الـ AI</a>
-                </div>
-            </div>
-
         </div>
+
+        <!-- ثاني إعدادي -->
+        <div class="card">
+            <div>
+                <h3><i>🧪</i> 2nd Preparatory</h3>
+                <ul class="subjects-list">
+                    <li>Math (Algebra & Geometry)</li>
+                    <li>Science, English, Arabic</li>
+                    <li><strong>Second Foreign Language (German/French)</strong></li>
+                    <li>Social Studies, Computer</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    يساعدك في حل مسائل التحليل ونظريات الهندسة والفيزياء.
+                </div>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: الهندسة التحليلية ببساطة
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
+        <!-- ثالث إعدادي -->
+        <div class="card">
+            <div>
+                <h3><i>🏆</i> 3rd Preparatory</h3>
+                <ul class="subjects-list">
+                    <li>Math, Science, English, Arabic</li>
+                    <li><strong>Second Foreign Language (German/French)</strong></li>
+                    <li>Social Studies, Computer</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    مساعد خاص للشهادة الإعدادية لحل المحافظات والأسئلة العليا.
+                </div>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: محافظة الجيزة Algebra & Geometry
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
     </div>
 
     <!-- ================= المرحلة الثانوية ================= -->
-    <div class="stage-container">
-        <div class="stage-title">🎓 Secondary Stage (المرحلة الثانوية)</div>
-        <div class="grades-grid">
-            
-            <!-- الأول الثانوي -->
-            <div class="card">
-                <div>
-                    <h3>1st Secondary <span>الأول الثانوي</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic & English Languages</li>
-                        <li><strong>Second Foreign Language (German / French / Italian / Spanish)</strong></li>
-                        <li>Math (Algebra, Trigonometry, Analytic Geo)</li>
-                        <li>Integrated Science / Sciences</li>
-                        <li>History, Geography, Philosophy & Logic</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 1st Sec AI Assistant:</div>
-                        مساعد ذكي مدرب على نظام التابلت الحديث وأسئلة الفهم والتحليل في جميع المواد.
-                    </div>
+    <div class="section-title">🎓 Secondary Stage (المرحلة الثانوية)</div>
+    <div class="grades-grid">
+        
+        <!-- أول ثانوي -->
+        <div class="card">
+            <div>
+                <h3><i>🎯</i> 1st Secondary</h3>
+                <ul class="subjects-list">
+                    <li>Math (Algebra, Trigonometry, Analytic Geo)</li>
+                    <li>Integrated Science / Sciences</li>
+                    <li>English, Arabic, <strong>2nd Lang (German/French/It/Es)</strong></li>
+                    <li>History, Geography, Philosophy</li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    مساعد متقدم لحل مسائل حساب المثلثات ونظام التابلت الحديث.
                 </div>
-                <div class="btn-group">
-                    <a href="#sec1-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#sec1-ai" class="btn btn-ai">اسأل الـ AI</a>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: نظام التابلت وأسئلة الفهم والتفكير
                 </div>
             </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
 
-            <!-- الثاني الثانوي -->
-            <div class="card">
-                <div>
-                    <h3>2nd Secondary <span>الثاني الثانوي</span></h3>
-                    <ul class="subjects-list">
-                        <li>Arabic, English, <strong>2nd Lang (German / French...)</strong></li>
-                        <li><strong>Sci Section:</strong> Pure Math, Mechanics, Physics, Chemistry, Biology</li>
-                        <li><strong>Arts Section:</strong> History, Geography, Psychology, Philosophy</li>
-                    </ul>
-                    <div class="ai-box">
-                        <div class="ai-title">🤖 2nd Sec AI Assistant:</div>
-                        خبير تفاضل وتكامل، ميكانيكا (Statics & Dynamics)، وقوانين الفيزياء المتقدمة.
-                    </div>
+        <!-- ثاني ثانوي -->
+        <div class="card">
+            <div>
+                <h3><i>🚀</i> 2nd Secondary</h3>
+                <ul class="subjects-list">
+                    <li>Pure Math & Mechanics (Applied)</li>
+                    <li>Physics, Chemistry, Biology (Sci)</li>
+                    <li>History, Geography, Psychology (Arts)</li>
+                    <li>Arabic, English, <strong>2nd Language</strong></li>
+                </ul>
+                <div class="ai-box">
+                    <div class="ai-title">🤖 AI Assistant:</div>
+                    خبير تفاضل وتكامل وميكانيكا (Dynamics & Statics) والفيزياء.
                 </div>
-                <div class="btn-group">
-                    <a href="#sec2-subjects" class="btn">المناهج والملخصات</a>
-                    <a href="#sec2-ai" class="btn btn-ai">اسأل الـ AI</a>
+                <div class="video-box">
+                    📺 فيديو شرح مميز: تفاضل وتكامل الصف الثاني الثانوي
                 </div>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">المناهج والملخصات</a>
+                <a href="#" class="btn btn-ai">اسأل الـ AI</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================= قسم برمجة المواقع (الزيرو وكودزيلا) ================= -->
+    <div class="programming-section">
+        <h2>💻 أكاديمية برمجة المواقع (Web Development Academy)</h2>
+        <p style="text-align: center; color: #ccc; font-size: 0.95em;">أقوى كورسات وشروحات برمجة المواقع (HTML, CSS, JavaScript, Python) من قنوات <strong>الزيرو (Elzero Web School)</strong> و<strong>كودزيلا (Codezilla)</strong> لتصبح مبرمج محترف!</p>
+        
+        <div class="prog-grid">
+            
+            <div class="prog-card">
+                <h4>🌐 مسار Front-End الكامل</h4>
+                <p>تعلم بناء وتصميم واجهات المواقع باحترافية من الصفر حتى الاحتراف.</p>
+                <a href="https://elzero.org/" target="_blank" class="prog-link">اذهب لكورس الزيرو 🚀</a>
+            </div>
+
+            <div class="prog-card">
+                <h4>🎨 تطبيقات عملية Front-End</h4>
+                <p>تطبيق عملي على أكثر من 50 فكرة وتصميم موقع حقيقي.</p>
+                <a href="https://elzero.courses/" target="_blank" class="prog-link">شاهد التطبيقات 📺</a>
+            </div>
+
+            <div class="prog-card">
+                <h4>🐍 لغة Python والمنطق البرمجي</h4>
+                <p>تطوير وحل المشكلات البرمجية وبناء الأساس القوي للذكاء الاصطناعي.</p>
+                <a href="https://www.youtube.com/@ElzeroWebSchool" target="_blank" class="prog-link">قناة أسامة الزيرو 🎬</a>
+            </div>
+
+            <div class="prog-card">
+                <h4>🤖 كودزيلا - البرمجة للجميع</h4>
+                <p>تمكين الشباب وعمل مشاريع وتطبيقات ومواقع ويب حقيقية.</p>
+                <a href="https://www.youtube.com/@Codezilla" target="_blank" class="prog-link">قناة كودزيلا 🚀</a>
             </div>
 
         </div>
     </div>
+
+    <!-- جافاسكريبت لتوليد الباسورد وتأكيد التفاعل -->
+    <script>
+        function generatePassword() {
+            let name = document.getElementById('userName').value.trim();
+            let grade = document.getElementById('userGrade').value;
+            let resultDiv = document.getElementById('pass-result');
+
+            if (name === "" || grade === "") {
+                resultDiv.style.color = "#e74c3c";
+                resultDiv.innerHTML = "❌ من فضلك اكتب اسمك واختار صفك أولاً!";
+                return;
+            }
+
+            // توليد كلمة مرور ذكية مرتبطة بالاسم والصف
+            let randomCode = Math.floor(1000 + Math.random() * 9000);
+            let password = "SERY-" + grade.replace(/\s+/g, '') + "-" + randomCode;
+
+            resultDiv.style.color = "#f1c40f";
+            resultDiv.innerHTML = `✅ أهلاً بك يا ${name}! كلمة المرور الخاصة بـ (${grade}) هي: <span style="background:#333; padding:2px 8px; border-radius:4px; color:#fff;">${password}</span>`;
+        }
+    </script>
 
 </body>
 </html>
