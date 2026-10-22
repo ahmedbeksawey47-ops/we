@@ -1,351 +1,326 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أكاديمية الطلائع لبرمجة الأطفال</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Cairo Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brandDark: '#0B0F19',
-                        brandCard: '#111827',
-                        brandAccent: '#10B981',
-                        brandSecondary: '#3B82F6',
-                        brandPurple: '#8B5CF6',
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نظام تسجيل الغياب - المعلم أحمد محمد سري</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#1e40af',
+              lightBlue: '#3b82f6',
+              bg: '#f8fafc',
+              card: '#ffffff'
             }
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif']
+          }
         }
-    </script>
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-        /* Custom Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Custom Animated Gradients */
-        .glow-effect {
-            box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.4);
-        }
-        .glow-emerald {
-            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.4);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-brandAccent selection:text-slate-950">
+<body class="min-h-screen p-4 sm:p-6 md:p-10 flex flex-col items-center justify-start">
 
-    <header class="bg-slate-900/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800/80 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="bg-gradient-to-tr from-brandAccent via-brandSecondary to-brandPurple p-3 rounded-2xl text-slate-950 shadow-md">
-                    <i class="fa-solid fa-code text-2xl font-black"></i>
-                </div>
-                <div>
-                    <h1 class="text-xl sm:text-2xl font-black bg-gradient-to-r from-brandAccent via-brandSecondary to-brandPurple bg-clip-text text-transparent">
-                        أكاديمية الطلائع
-                    </h1>
-                    <p class="text-xs text-slate-400 font-semibold">لتعليم برمجة الأطفال (7 - 15 سنة)</p>
-                </div>
-            </div>
+  <div class="w-full max-w-xl space-y-6">
 
-            <nav class="hidden md:flex items-center space-x-8 space-x-reverse font-bold text-sm">
-                <a href="#about" class="hover:text-brandAccent transition-colors">عن الأكاديمية</a>
-                <a href="#courses" class="hover:text-brandAccent transition-colors">الدورات والأسعار</a>
-                <a href="#register" class="hover:text-brandAccent transition-colors">للإستفسارات والحجز</a>
-            </nav>
+    <!-- Header Section -->
+    <div class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 rounded-3xl shadow-lg text-center space-y-2">
+      <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+        <i class="fa-solid fa-chalkboard-user"></i>
+      </div>
+      <span class="text-xs font-bold text-blue-200 tracking-wider">نظام متابعة الحصص الشهرية (8 حصص)</span>
+      <h1 class="text-2xl sm:text-3xl font-black">المعلم / أحمد محمد سري</h1>
+    </div>
 
-            <div>
-                <a href="https://wa.me/201121955935" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-600/20 transition-all flex items-center space-x-2 space-x-reverse text-sm">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span class="hidden sm:inline">تواصل مباشر</span>
-                </a>
-            </div>
+    <!-- Attendance Form Card -->
+    <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-slate-200 space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-calendar-check text-blue-600"></i>
+          تسجيل حصة / غياب جديد
+        </h2>
+        <span class="text-xs bg-blue-50 text-blue-700 font-bold px-3 py-1 rounded-full border border-blue-100">
+          الشهر = 8 حصص
+        </span>
+      </div>
+
+      <form id="attendanceForm" class="space-y-4">
+        
+        <!-- Student Name Input -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-1.5">اسم الطالب</label>
+          <div class="relative">
+            <i class="fa-solid fa-user absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" id="studentName" required placeholder="أدخل اسم الطالب هنا"
+              class="w-full pr-10 pl-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold focus:outline-none focus:border-blue-600 focus:bg-white transition-all text-sm">
+          </div>
         </div>
-    </header>
 
-    <section class="relative overflow-hidden py-16 lg:py-28 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3B82F6_1px,transparent_1px)] [background-size:20px_20px]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <!-- Date Input -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-1.5">تاريخ الحصة / اليوم</label>
+          <div class="relative">
+            <i class="fa-solid fa-calendar-days absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="date" id="lessonDate" required
+              class="w-full pr-10 pl-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold focus:outline-none focus:border-blue-600 focus:bg-white transition-all text-sm">
+          </div>
+        </div>
+
+        <!-- Attendance Status Radio -->
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-2">حالة الحضور</label>
+          <div class="grid grid-cols-2 gap-3">
             
-            <div class="inline-flex items-center space-x-2 space-x-reverse bg-slate-900 border border-slate-800 text-brandAccent font-bold px-4 py-2 rounded-full text-xs sm:text-sm mb-8 shadow-inner">
-                <span class="w-2.5 h-2.5 rounded-full bg-brandAccent animate-ping"></span>
-                <span>القبول مخصص حصرياً للأطفال من عمر 7 إلى 15 سنة</span>
-            </div>
+            <!-- Present Button -->
+            <label class="relative flex items-center justify-center p-3.5 rounded-2xl border-2 border-slate-200 cursor-pointer hover:border-green-500 has-[:checked]:border-green-600 has-[:checked]:bg-green-50/50 transition-all text-center">
+              <input type="radio" name="status" value="حاضر" checked class="sr-only">
+              <div class="flex items-center gap-2 text-slate-700 font-bold text-sm">
+                <i class="fa-solid fa-circle-check text-green-600 text-base"></i>
+                <span>حضر الحصة</span>
+              </div>
+            </label>
 
-            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
-                ابتدئ رحلة طفلك البرمجية في <br class="hidden sm:inline">
-                <span class="bg-gradient-to-r from-brandAccent via-brandSecondary to-brandPurple bg-clip-text text-transparent">أكاديمية الطلائع لبرمجة الأطفال</span>
-            </h2>
+            <!-- Absent But Charged Button -->
+            <label class="relative flex items-center justify-center p-3.5 rounded-2xl border-2 border-slate-200 cursor-pointer hover:border-amber-500 has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/50 transition-all text-center">
+              <input type="radio" name="status" value="غائب (المعلم حضر)" class="sr-only">
+              <div class="flex items-center gap-2 text-slate-700 font-bold text-xs sm:text-sm">
+                <i class="fa-solid fa-user-xmark text-amber-600 text-base"></i>
+                <span>غائب (تُحسب عليه)</span>
+              </div>
+            </label>
 
-            <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg mb-10 leading-relaxed">
-                نصنع من طفلك مبرمج المستقبل من خلال تعليم لغات العصر مثل  <strong class="text-white">Front-End</strong> بأحدث الأساليب المبتكرة والمبسطة.
-            </p>
-
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#register" class="w-full sm:w-auto bg-gradient-to-r from-brandAccent to-brandSecondary text-slate-950 font-black px-8 py-4 rounded-2xl shadow-xl shadow-brandAccent/20 hover:scale-105 transition-all text-center">
-                    احجز الآن أو استفسر
-                </a>
-                <a href="#courses" class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold px-8 py-4 rounded-2xl border border-slate-800 transition-all text-center">
-                    عرض الأسعار والدورات
-                </a>
-            </div>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2 text-center">
+            * في حالة الغياب مع حضور المعلم، تُخصم الحصة تلقائياً من الـ 8 حصص الشهرية.
+          </p>
         </div>
-    </section>
 
-    <section id="about" class="py-20 bg-slate-900/50 border-y border-slate-800/80 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                
-                <div>
-                    <span class="text-brandAccent font-bold text-xs uppercase tracking-widest bg-brandAccent/10 px-3 py-1 rounded-full">عن الأكاديمية والمحاضر</span>
-                    <h3 class="text-3xl sm:text-4xl font-black mt-3 mb-6">رؤيتنا في تعليم البرمجة للصغار</h3>
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        أهلاً بكم في <strong class="text-brandAccent">أكاديمية الطلائع</strong>! نحن متكفلون برعاية وتحفيز شغف الأطفال بعالم التكنولوجيا. البرمجة ليست مجرد كتابة شفرات، بل هي وسيلة لتنفيذ الأفكار الإبداعية وبناء التفكير المنطقي والتحليلي لدى الطفل.
-                    </p>
-                    <p class="text-slate-300 leading-relaxed mb-8">
-                        نقوم بشرح لغات البرمجة ( وفرونت إند) بأسلوب ممتع يبسط الأعقد للمفاهيم، مع الاعتماد التام على التطبيق العملي والمشاريع التفاعلية التي تمكن الطفل من إنشاء ألعابه وموقعه الإلكتروني الخاص.
-                    </p>
+        <!-- Submit Button -->
+        <button type="submit" 
+          class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 rounded-xl shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 text-base">
+          <i class="fa-solid fa-plus-circle"></i>
+          <span>تسجيل الحصة / الغياب</span>
+        </button>
+      </form>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800">
-                            <i class="fa-solid fa-child-reaching text-brandAccent text-2xl mb-2"></i>
-                            <h4 class="font-bold text-white mb-1">فئة عمرية محددة</h4>
-                            <p class="text-xs text-slate-400">مناسبة تماماً للقدرات الذهنية للأطفال من 7 إلى 15 سنة.</p>
-                        </div>
-                        <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800">
-                            <i class="fa-solid fa-lightbulb text-brandSecondary text-2xl mb-2"></i>
-                            <h4 class="font-bold text-white mb-1">تعليم بالابتكار</h4>
-                            <p class="text-xs text-slate-400">تحويل الفضول الرقمي إلى ابتكار ومواقع حقيقية.</p>
-                        </div>
-                    </div>
-                </div>
+    </div>
 
-                <div class="bg-gradient-to-tr from-slate-900 via-slate-900 to-slate-800 p-8 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-brandAccent/10 rounded-full blur-2xl"></div>
-                    
-                    <h4 class="text-xl font-black text-white mb-6 flex items-center space-x-2 space-x-reverse">
-                        <i class="fa-solid fa-graduation-cap text-brandAccent"></i>
-                        <span>شروط الانضمام والقبول</span>
-                    </h4>
+    <!-- Student Summary Card -->
+    <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-200 space-y-4">
+      
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+          <i class="fa-solid fa-calculator text-blue-600"></i>
+          ملخص الحصص للشهر الحقيقي
+        </h3>
+        <button onclick="searchStudent()" class="text-xs text-blue-600 font-bold hover:underline">
+          تحديث / عرض الطالب
+        </button>
+      </div>
 
-                    <ul class="space-y-4 text-slate-300 font-medium">
-                        <li class="flex items-start space-x-3 space-x-reverse">
-                            <div class="bg-brandAccent/20 text-brandAccent p-1 rounded-lg text-sm mt-1">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <span>العمر المسموح به: <strong class="text-white">من 7 سنوات وحتى 15 سنة فقط</strong>.</span>
-                        </li>
-                        <li class="flex items-start space-x-3 space-x-reverse">
-                            <div class="bg-brandAccent/20 text-brandAccent p-1 rounded-lg text-sm mt-1">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <span>توفير جهاز حاسوب أو لابتوب للطفل للتطبيق العملي.</span>
-                        </li>
-                        <li class="flex items-start space-x-3 space-x-reverse">
-                            <div class="bg-brandAccent/20 text-brandAccent p-1 rounded-lg text-sm mt-1">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <span>التزام ولي الأمر بمتابعة التطبيقات الأسبوعية للطفل.</span>
-                        </li>
-                    </ul>
+      <!-- Result Display Box -->
+      <div id="summaryCard" class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4 text-center">
+        <p class="text-xs text-slate-500 font-bold">اكتب اسم الطالب فوق للبدء أو رؤية حسابه</p>
+      </div>
 
-                    <div class="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-slate-400">للتواصل المباشر مع الأكاديمية</p>
-                            <p class="text-lg font-black text-brandAccent" dir="ltr">01121955935</p>
-                        </div>
-                        <a href="https://wa.me/201121955935" target="_blank" class="bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white px-4 py-2 rounded-xl text-xs font-bold transition-all border border-emerald-500/30">
-                            واتساب
-                        </a>
-                    </div>
-                </div>
+    </div>
 
-            </div>
+    <!-- Simple History List -->
+    <div class="bg-white p-6 rounded-3xl shadow-md border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+          <i class="fa-solid fa-list-check text-slate-600"></i>
+          سجل الحصص المسجلة
+        </h3>
+        <button onclick="clearAllData()" class="text-xs text-red-500 hover:underline font-bold">
+          مسح السجل
+        </button>
+      </div>
+
+      <div id="logsList" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+        <!-- Records render here -->
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'teacher_sery_attendance_data';
+
+    // Set default date to today
+    document.getElementById('lessonDate').valueAsDate = new Date();
+
+    // Get Data from LocalStorage
+    function getData() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    }
+
+    // Save Data to LocalStorage
+    function saveData(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    // Handle Form Submit
+    document.getElementById('attendanceForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('studentName').value.trim();
+      const date = document.getElementById('lessonDate').value;
+      const status = document.querySelector('input[name="status"]:checked').value;
+
+      if (!name || !date) return;
+
+      const records = getData();
+      
+      records.push({
+        id: Date.now(),
+        teacher: 'أحمد محمد سري',
+        student: name,
+        date: date,
+        status: status // 'حاضر' or 'غائب (المعلم حضر)'
+      });
+
+      saveData(records);
+
+      updateSummary(name);
+      renderLogs();
+      
+      // Feedback
+      alert(`تم تسجيل الحصة بنجاح للطالب: ${name}`);
+    });
+
+    // Student Summary Calculation
+    function searchStudent() {
+      const name = document.getElementById('studentName').value.trim();
+      if (!name) {
+        alert('يرجى كتابة اسم الطالب في الخانة أولاً');
+        return;
+      }
+      updateSummary(name);
+    }
+
+    function updateSummary(studentName) {
+      const records = getData();
+      const studentRecords = records.filter(r => r.student.toLowerCase() === studentName.toLowerCase());
+
+      const totalLessonsInMonth = 8;
+      // All recorded sessions (Present or Absent with teacher present) count as consumed lessons
+      const consumedLessons = studentRecords.length;
+      const remainingLessons = Math.max(0, totalLessonsInMonth - consumedLessons);
+
+      const summaryCard = document.getElementById('summaryCard');
+
+      if (consumedLessons === 0) {
+        summaryCard.innerHTML = `
+          <p class="text-xs text-slate-500 font-bold">لا يوجد حصص مسجلة بعد للطالب: <span class="text-blue-700">${studentName}</span></p>
+        `;
+        return;
+      }
+
+      const isFinished = remainingLessons === 0;
+
+      summaryCard.innerHTML = `
+        <div class="text-right border-b border-slate-200 pb-3">
+          <span class="text-xs text-slate-400 font-bold block">الطالب:</span>
+          <span class="text-lg font-black text-slate-800">${studentName}</span>
         </div>
-    </section>
 
-    <section id="courses" class="py-20 bg-slate-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-brandAccent font-bold text-xs uppercase tracking-widest bg-brandAccent/10 px-3 py-1 rounded-full">الدورات والأسعار</span>
-                <h3 class="text-3xl sm:text-4xl font-black mt-3 mb-4">اختر الكورس المناسب لطفلك</h3>
-                <p class="text-slate-400">أسعار مناسبة ومحتوى تعليمي متكامل مخصص للفئة العمرية من 7 إلى15 سنة.</p>
-            </div>
+        <div class="grid grid-cols-2 gap-3 text-center">
+          <div class="bg-blue-50 p-3 rounded-xl border border-blue-100">
+            <span class="text-[11px] font-bold text-blue-600 block">الحصص المستهلكة</span>
+            <span class="text-2xl font-black text-blue-900">${consumedLessons} <span class="text-xs font-normal text-slate-500">من 8</span></span>
+          </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-              
-                <!-- Front-End Course Card -->
-                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-brandAccent/60 transition-all duration-300 flex flex-col justify-between group glow-emerald">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="bg-emerald-500/10 text-brandAccent p-4 rounded-2xl text-3xl group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <span class="bg-emerald-500/20 text-emerald-400 text-xs font-black px-3 py-1.5 rounded-full border border-emerald-500/30">
-                                السن: 7 - 15 سنة
-                            </span>
-                        </div>
-
-                        <h4 class="text-2xl font-black mb-2 text-white">دورة فرونت إند (Front-End)</h4>
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                            يتعلم الطفل كيف يبني موقعه الإلكتروني بنفسه باستخدام لغات الويب (HTML, CSS, JS)، مع التركيز على التصميم الجذاب والألوان والإبداع.
-                        </p>
-
-                        <div class="mb-6 p-4 bg-slate-950 rounded-2xl border border-slate-800/80">
-                            <div class="text-xs text-slate-400 mb-1">تكلفة الدورة:</div>
-                            <div class="text-3xl font-black text-brandAccent">200 <span class="text-sm font-bold text-slate-300">جنيه مصري</span></div>
-                        </div>
-
-                        <ul class="space-y-2.5 text-xs text-slate-300 mb-8 font-semibold">
-                            <li class="flex items-center space-x-2 space-x-reverse"><i class="fa-solid fa-circle-check text-brandAccent"></i><span>تصميم صفحات ويب جذابة وتفاعلية</span></li>
-                            <li class="flex items-center space-x-2 space-x-reverse"><i class="fa-solid fa-circle-check text-brandAccent"></i><span>تعلم تنسيق الألوان والأشكال</span></li>
-                            <li class="flex items-center space-x-2 space-x-reverse"><i class="fa-solid fa-circle-check text-brandAccent"></i><span>مشروع موقع كامل في نهاية الدورة</span></li>
-                        </ul>
-                    </div>
-
-                    <a href="#register" onclick="selectCourse('فرونت إند - 200 جنيه')" class="w-full bg-slate-800 hover:bg-brandAccent hover:text-slate-950 text-white font-bold py-3.5 rounded-xl transition-all text-center text-sm block">
-                        اختيار دورة فرونت إند (200 جنيه)
-                    </a>
-                </div>
-
-            </div>
+          <div class="${isFinished ? 'bg-red-50 border-red-100' : 'bg-green-50 border-green-100'} p-3 rounded-xl border">
+            <span class="text-[11px] font-bold ${isFinished ? 'text-red-600' : 'text-green-600'} block">الحصص المتبقية</span>
+            <span class="text-2xl font-black ${isFinished ? 'text-red-700' : 'text-green-800'}">${remainingLessons} <span class="text-xs font-normal text-slate-500">حصة</span></span>
+          </div>
         </div>
-    </section>
 
-    <section id="register" class="py-20 bg-slate-900/60 border-t border-slate-800/80">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-                
-                <div class="text-center mb-8">
-                    <span class="text-brandAccent font-bold text-xs uppercase tracking-widest bg-brandAccent/10 px-3 py-1 rounded-full">نموذج الحجز المباشر</span>
-                    <h3 class="text-2xl sm:text-3xl font-black mt-3 mb-2">للإستفسارات والحجز عبر الواتساب</h3>
-                    <p class="text-slate-400 text-xs sm:text-sm">اكتب بياناتك بالأسفل وسيقوم النظام بتوجيهك فوراً برسالة جاهزة لرقم الواتساب للأكاديمية.</p>
-                </div>
+        ${isFinished ? `<p class="text-xs font-bold text-red-600 bg-red-100/60 p-2 rounded-lg">⚠️ انتهى اشتراك الـ 8 حصص لهذا الطالب لهذا الشهر.</p>` : ''}
+      `;
+    }
 
-                <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-5">
-                    
-                    <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">اسم ولي الأمر / الطالب:</label>
-                        <input type="text" id="personName" required placeholder="مثال: أستاذ أحمد محمود" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-brandAccent transition-colors text-sm">
-                    </div>
+    // Render Recent Logs
+    function renderLogs() {
+      const records = getData().reverse(); // show latest first
+      const container = document.getElementById('logsList');
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-sm font-bold text-slate-300 mb-2">رقم هاتف الواتساب:</label>
-                            <input type="tel" id="whatsappPhone" required placeholder="مثال: 01123456789" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-brandAccent transition-colors text-sm">
-                        </div>
+      if (records.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">لا توجد غيابات أو حصص مسجلة حتى الآن.</p>`;
+        return;
+      }
 
-                        <div>
-                            <label class="block text-sm font-bold text-slate-300 mb-2">عمر الطفل (سنوات):</label>
-                            <input type="number" id="childAge" required min="1" max="18" placeholder="مثال: 9" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-brandAccent transition-colors text-sm">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold text-slate-300 mb-2">اختر الكورس والسعر المطلوب:</label>
-                        <select id="courseOption" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brandAccent transition-colors text-sm">
-                            <option value="" disabled selected>-- اختر الدورة التدريبية --</option>
-                            
-                            <option value="دورة فرونت إند بسعر 200 جنيه">دورة فرونت إند (Front-End) - 200 جنيه مصري</option>
-                        </select>
-                    </div>
-
-                    <!-- Age Alert Error Message -->
-                    <div id="ageError" class="hidden bg-rose-500/10 border border-rose-500/30 text-rose-400 p-4 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-3 space-x-reverse">
-                        <i class="fa-solid fa-triangle-exclamation text-lg"></i>
-                        <span id="ageErrorText">عذراً، التسجيل مخصص للأطفال من سن 7 إلى 15 سنة فقط!</span>
-                    </div>
-
-                    <!-- Success Alert Message -->
-                    <div id="formSuccess" class="hidden bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-4 rounded-xl text-xs sm:text-sm font-bold flex items-center space-x-3 space-x-reverse">
-                        <i class="fa-solid fa-circle-check text-lg"></i>
-                        <span>تم التحقق من البيانات بنجاح! جاري تحويلك إلى تطبيق الواتساب...</span>
-                    </div>
-
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 rounded-xl shadow-lg shadow-emerald-600/30 transition-all text-base flex items-center justify-center space-x-2 space-x-reverse">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span>للإستفسارات والحجز عبر الواتساب</span>
-                    </button>
-
-                </form>
-
-            </div>
+      container.innerHTML = records.map(r => `
+        <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs">
+          <div>
+            <span class="font-bold text-slate-800 block">${r.student}</span>
+            <span class="text-[10px] text-slate-400">${r.date}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold px-2.5 py-1 rounded-lg ${r.status.includes('حاضر') ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-800'}">
+              ${r.status}
+            </span>
+            <button onclick="deleteRecord(${r.id})" class="text-slate-400 hover:text-red-500">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
         </div>
-    </section>
+      `).join('');
+    }
 
-    <footer class="bg-slate-900 border-t border-slate-800 py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
-            <div>
-                <h4 class="text-lg font-black text-white mb-1">أكاديمية الطلائع لبرمجة الأطفال</h4>
-                <p class="text-xs text-slate-400">نصنع جيل الغد البرمجي للأطفال من عمر 7 إلى 15 سنة.</p>
-            </div>
-            <div class="flex items-center space-x-6 space-x-reverse text-xs text-slate-400">
-                <span>الواتساب للحجز: <strong class="text-brandAccent" dir="ltr">01121955935</strong></span>
-            </div>
-        </div>
-    </footer>
+    // Delete single record
+    function deleteRecord(id) {
+      let records = getData();
+      records = records.filter(r => r.id !== id);
+      saveData(records);
+      renderLogs();
+      const currentName = document.getElementById('studentName').value.trim();
+      if (currentName) updateSummary(currentName);
+    }
 
-    <script>
-        // Auto select course in form when clicked from cards
-        function selectCourse(courseVal) {
-            const selectEl = document.getElementById('courseOption');
-          {
-            }  if(courseVal.includes('فرونت')) {
-                selectEl.value = 'دورة فرونت إند بسعر 200 جنيه';
-            }
-        }
+    // Clear All
+    function clearAllData() {
+      if (confirm('هل أنت تأكد من مسح جميع السجلات المسجلة؟')) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderLogs();
+        document.getElementById('summaryCard').innerHTML = `<p class="text-xs text-slate-500 font-bold">تم مسح السجل بنجاح</p>`;
+      }
+    }
 
-        // Handle booking submission
-        function handleBookingSubmit(event) {
-            event.preventDefault();
+    // Auto-search on typing student name
+    document.getElementById('studentName').addEventListener('input', function(e) {
+      if (e.target.value.trim()) {
+        updateSummary(e.target.value.trim());
+      }
+    });
 
-            const name = document.getElementById('personName').value.trim();
-            const phone = document.getElementById('whatsappPhone').value.trim();
-            const age = parseInt(document.getElementById('childAge').value);
-            const course = document.getElementById('courseOption').value;
+    // Initial Load
+    renderLogs();
+  </script>
 
-            const ageError = document.getElementById('ageError');
-            const formSuccess = document.getElementById('formSuccess');
-
-            // Reset alerts
-            ageError.classList.add('hidden');
-            formSuccess.classList.add('hidden');
-
-            // Validate age constraint (Strictly 7 to 11)
-            if (isNaN(age) || age < 7 || age > 15) {
-                ageError.classList.remove('hidden');
-                document.getElementById('ageErrorText').innerText = `عذراً يا ${name}، عمر الطفل (${age} سنوات) غير مطابق لشرط الأكاديمية (القبول من 7 إلى 15 سنة فقط).`;
-                return;
-            }
-
-            // Show success alert
-            formSuccess.classList.remove('hidden');
-
-            // Format message exactly as requested
-            const messageText = `أن الرجل الذي يسمى ${name} يريد أن يحجز لغة ${course} في البرمجه ورقم هاتفه هو ${phone}`;
-
-            const targetPhone = "201121955935";
-            const whatsappLink = `https://wa.me/${targetPhone}?text=${encodeURIComponent(messageText)}`;
-
-            // Redirect after brief delay
-            setTimeout(() => {
-                window.open(whatsappLink, '_blank');
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
